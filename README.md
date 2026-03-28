@@ -29,8 +29,8 @@
 
     Setup Instructions
            Clone the repository
-               git clone <your-repo-url>
-               cd <repo-folder>
+               git clone https://github.com/Nazmul2957/rick_morty_character.git
+               
            Install dependencies
                flutter pub get
            Generate Hive type adapters
