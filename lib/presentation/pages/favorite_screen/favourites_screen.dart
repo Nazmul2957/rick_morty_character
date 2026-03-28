@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/favourites/favourites_controller.dart';
@@ -33,23 +34,59 @@ class FavoritesScreen extends StatelessWidget {
                 child: ListTile(
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      character.image,
-                      width: 50,
-                      height: 50,
+                    child: CachedNetworkImage(
+                      imageUrl: character.image,
+                      width: 80,
+                      height: double.infinity,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Icon(Icons.person),
+
+                      placeholder: (context, url) => const SizedBox(
+                        width: 80,
+                        height: double.infinity,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                          ),
+                        ),
+                      ),
+
+                      errorWidget: (context, url, error) =>
+                      const Icon(Icons.person, size: 80),
                     ),
                   ),
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Name: ${character.name}"),
-                      Text("Status: ${character.status}"),
-                      Text("Species: ${character.species}"),
-                      Text("Type: ${character.type}"),
-                      Text("Gender: ${character.gender}"),
+                      Text(
+                        "Name: ${character.name}",
+                        style: const TextStyle(fontSize: 12),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        "Status: ${character.status}",
+                        style: const TextStyle(fontSize: 12),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        "Species: ${character.species}",
+                        style: const TextStyle(fontSize: 12),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        "Type: ${character.type}",
+                        style: const TextStyle(fontSize: 12),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        "Gender: ${character.gender}",
+                        style: const TextStyle(fontSize: 12),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ],
                   ),
 

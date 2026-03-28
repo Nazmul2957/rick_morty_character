@@ -65,27 +65,27 @@ class CharacterController extends GetxController {
   }
 
   // Initial Load from API
-  Future<void> fetchCharacters() async {
-    try {
-      isLoading.value = true;
-
-      final result = await getCharacters(currentPage);
-
-      // Save to Hive
-      for (var character in result) {
-        characterBox.put(
-          character.id,
-          CharacterHiveModel.fromEntity(character),
-        );
-      }
-
-      _characters.assignAll(result);
-    } catch (e) {
-      Get.snackbar('Error', e.toString());
-    } finally {
-      isLoading.value = false;
-    }
-  }
+  // Future<void> fetchCharacters() async {
+  //   try {
+  //     isLoading.value = true;
+  //
+  //     final result = await getCharacters(currentPage);
+  //
+  //     // Save to Hive
+  //     for (var character in result) {
+  //       characterBox.put(
+  //         character.id,
+  //         CharacterHiveModel.fromEntity(character),
+  //       );
+  //     }
+  //
+  //     _characters.assignAll(result);
+  //   } catch (e) {
+  //     Get.snackbar('Error', e.toString());
+  //   } finally {
+  //     isLoading.value = false;
+  //   }
+  // }
 
   // Pagination (Load More)
   Future<void> loadMore() async {

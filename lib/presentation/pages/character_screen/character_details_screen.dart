@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -31,14 +32,26 @@ class CharacterDetailScreen extends StatelessWidget {
             // Character Image
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                character.image,
+              child:CachedNetworkImage(
+                imageUrl: character.image,
                 width: double.infinity,
                 height: 200,
                 fit: BoxFit.fill,
-                errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.person, size: 200),
+
+                placeholder: (context, url) => const SizedBox(
+                  width: 80,
+                  height: 80,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                    ),
+                  ),
+                ),
+
+                errorWidget: (context, url, error) =>
+                const Icon(Icons.person, size: 80),
               ),
+
             ),
             const SizedBox(height: 16),
 
