@@ -21,7 +21,7 @@ class SnackbarService {
     );
   }
 
-  void showError(String message, {String title = "Error"}) {
+  void showError(String message, {String title = "No More Data"}) {
     Get.snackbar(
       title,
       message,

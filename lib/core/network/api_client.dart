@@ -66,8 +66,8 @@ class ApiClient {
         throw UnauthorizedException(message: "Unauthorized");
 
       case 404:
-        SnackbarService.instance.showError("There is nothing here");
-        throw NotFoundException(message: "There is nothing here");
+        SnackbarService.instance.showError("You've reached the end of the list");
+        throw NotFoundException(message: "No more characters found");
 
       case 500:
         SnackbarService.instance.showError("Server Error");

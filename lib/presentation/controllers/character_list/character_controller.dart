@@ -34,9 +34,16 @@ class CharacterController extends GetxController {
   Future<void> _initHiveAndLoad() async {
     isLoading.value = true;
     characterBox = await Hive.openBox<CharacterHiveModel>('characters');
-    _characters.assignAll(
-      characterBox.values.map((e) => e.toEntity()).toList(),
-    );
+    // Load local data first
+    final localData =
+    characterBox.values.map((e) => e.toEntity()).toList();
+
+    if (localData.isNotEmpty) {
+      _characters.assignAll(localData);
+    }
+    // _characters.assignAll(
+    //   characterBox.values.map((e) => e.toEntity()).toList(),
+    // );
     // LISTEN TO HIVE CHANGES
     _hiveStream = characterBox.watch();
 
@@ -52,6 +59,7 @@ class CharacterController extends GetxController {
       // Load from Hive
       isLoading.value = true;
     }
+    await Future.delayed(const Duration(seconds: 2));
 
     isLoading.value = false;
   }
